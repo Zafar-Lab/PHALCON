@@ -14,7 +14,8 @@ chmod +x phalcon.py
 sudo mv phalcon.py /usr/local/bin/phalcon
 sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 ```
-###Run phalcon by giving inputs on the command line
+**Run phalcon by giving inputs on the command line**
+
 Below is an example where "sample_read_count_file.tsv" and "sample_gq_file.tsv" files are provided as input with all other variables being kept at the default values.
 ```
 phalcon -i ../sample_read_count_file.tsv -g ../sample_gq_file.tsv
