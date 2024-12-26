@@ -4,6 +4,7 @@ PHALCON is a variant calling algorithm specifically designed for high-throughput
 ## Usage
 PHALCON takes as input a read count matrix $(sites \times cells)$. If you have a loom file instead, a script named ```loomToReadcount.py``` is present in the main directory, output of which can be fed as input to PHALCON.
 For running PHALCON, download the ```src``` folder, unzip it on your system and follow the steps below:
+
 **Step 1** Change directory to ```src``` folder and run the following command:
 ```
 chmod +x phalcon.py
