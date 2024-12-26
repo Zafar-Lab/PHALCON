@@ -23,5 +23,7 @@ Below is an example where "sample_read_count_file.tsv" and "sample_geno_qual_fil
 ```
 phalcon -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv
 ```
+Use ```-gq 0``` to disable the genotype quality filter.
+
 ## Help
 Run ```phalcon -help``` for the description of parameters, along with their default values.
