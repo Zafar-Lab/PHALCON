@@ -32,7 +32,7 @@ sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 ## Optional Arguments
 ```-gq```: Enable genotype quality filter
 
-```-q```: Genotype quality threshold (_Default_ : 0.2)
+```-q```: Genotype quality threshold (_Default_ : 30)
 
 
 ## Run phalcon
