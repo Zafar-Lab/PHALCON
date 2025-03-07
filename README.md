@@ -15,6 +15,18 @@ chmod +x phalcon.py
 sudo mv phalcon.py /usr/local/bin/phalcon
 sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 ```
+## Arguments
+```-i```: Input read count file
+```-o```: Output prefix
+```-r```: Minimum read depth threshold (_Default_ : 5)
+```-a```: Alternate frequency threshold (_Default_ : 0.2)
+```-v```: Threshold for proportion of cells with insufficient read count information (_Default_ : 0.5)
+```-m```: Threshold for proportion of sites harboring a mutation (_Default_ : 0.004)
+
+## Optional Arguments
+```-gq```: Enable genotype quality filter
+```-q```: Genotype quality threshold (_Default_ : 0.2)
+
 **Run phalcon**
 
 On the command line, give the input arguments (use ```help``` for the list of arguments) and run phalcon.
