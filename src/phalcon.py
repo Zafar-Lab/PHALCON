@@ -210,7 +210,6 @@ alt_alleles_copy = copy.copy(alt_alleles)
 
 # .................................Quality Filter..............................................................................................
 if isQualityFilteringOn:
-    print(isQualityFilteringOn) 
     df_gq = pd.read_csv(qualityFileName,sep='\t',header=None)
     gq = df_gq.drop(columns=df_gq.columns[0],axis=1).to_numpy()
     gq = gq[retain_indices,:]
