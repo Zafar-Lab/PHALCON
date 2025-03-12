@@ -38,7 +38,7 @@ sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 ```-q```: Genotype quality threshold (_Default_ : 30)
 
 
-## RUN PHALCON
+## Run PHALCON
 
 On the command line, give the input arguments (use ```help``` for the list of arguments) and run phalcon.
 
