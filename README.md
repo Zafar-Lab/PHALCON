@@ -28,9 +28,12 @@ sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 
 ```-m```: Threshold for proportion of sites harboring a mutation (_Default_ : 0.004)
 
+```-c```: Clustering algorithm to use (_Default_: "spectral", Options: "spectral" or "leiden")
+
+```-s```: Seed
 
 ## Optional Arguments
-```-gq```: Enable genotype quality filter
+```-gq```: Enable genotype quality filter (_Default_: 0)
 
 ```-q```: Genotype quality threshold (_Default_ : 30)
 
