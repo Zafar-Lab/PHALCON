@@ -44,7 +44,7 @@ On the command line, give the input arguments (use ```help``` for the list of ar
 
 Below is an example where "sample_read_count_file.tsv" and "sample_geno_qual_file.tsv" files are provided as input with all other variables being kept at the default values.
 ```
-phalcon -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv
+phalcon -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
 ```
 Use ```-gq 0``` to disable the genotype quality filter. For a sample run, you can find the input files here:
 
