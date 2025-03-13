@@ -3,7 +3,7 @@
 PHALCON is a fast, efficient variant caller that is robust to SCS-errors. Specifically designed for high-throughput data, PHALCON performs reliable variant calling on a large number of cells within a reasonable timeframe. 
 
 ## Usage
-PHALCON takes as input a read count matrix $(sites \times cells)$ and (_optionally_) a genotype quality matrix. If you have a loom file instead, a script named ```loomToReadcount.py``` is present in the main directory, output files of which can be fed as input to PHALCON.
+PHALCON takes as input a read count matrix $(sites \times cells)$ and (_optionally_) a genotype quality matrix. If you have a loom file instead, a script named ```loomToReadcount.py``` is present in the ```supplementary``` folder in the main directory, output files of which can be fed as input to PHALCON.
 For running PHALCON, download the ```src``` folder, unzip it on your system, and follow the steps below:
 
 **Step 1**- Change directory to ```src``` folder and run the following command:
@@ -37,6 +37,9 @@ sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 
 ```-q```: Genotype quality threshold (_Default_ : 30)
 
+## Output
+
+PHALCON mainly outputs the variant calls on each cell (_vcf format_) and the reconstructed phylogeny (_.gv format_). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
 
 ## Run PHALCON
 
