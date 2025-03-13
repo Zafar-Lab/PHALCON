@@ -39,7 +39,7 @@ sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 
 ## Output
 
-PHALCON mainly outputs the variant calls on each cell (_vcf format_) and the reconstructed phylogeny (_.gv format_). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
+PHALCON mainly outputs the variant calls on each cell (_.vcf format_) and the reconstructed phylogeny (_.gv format_). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
 
 ## Run PHALCON
 
