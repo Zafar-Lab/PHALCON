@@ -1,6 +1,7 @@
 # PHALCON
 ## Description
 PHALCON is a fast, efficient variant caller that is robust to SCS-errors. Specifically designed for high-throughput data, PHALCON performs reliable variant calling on a large number of cells within a reasonable timeframe. 
+
 ![PHALCON Workflow](Overview_PHALCON.png)
 
 ## Usage
