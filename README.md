@@ -1,6 +1,6 @@
 # PHALCON
 ## Description
-PHALCON is a fast, efficient variant caller that is robust to SCS-errors. Specifically designed for high-throughput data, PHALCON performs reliable variant calling on a large number of cells within a reasonable timeframe. 
+PHALCON is a scalable single-cell variant caller designed for high-throughput sequencing data. It is robust to common single-cell sequencing (SCS) errors and enables accurate mutation detection across large numbers of cells within practical runtimes.
 
 ![PHALCON Workflow](Overview_PHALCON.png)
 
