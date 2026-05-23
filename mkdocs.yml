@@ -1,0 +1,6 @@
+site_name: PHALCON
+docs_dir: docs
+nav:
+  - Tutorial: index.md
+theme:
+  name: readthedocs
