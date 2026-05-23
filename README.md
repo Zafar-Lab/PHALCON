@@ -1,0 +1,59 @@
+# PHALCON
+## Description
+PHALCON is a scalable single-cell variant caller designed for high-throughput sequencing data. It is robust to common single-cell sequencing (SCS) errors and enables accurate mutation detection across large numbers of cells within practical runtimes.
+
+![PHALCON Workflow](Overview_PHALCON.png)
+
+## Usage
+PHALCON takes as input a read count matrix $(sites \times cells)$ and (_optionally_) a genotype quality matrix. If you have a loom file instead, a script named ```loomToReadcount.py``` is present in the ```supplementary``` folder in the main directory, output files of which can be fed as input to PHALCON.
+For running PHALCON, download the ```src``` folder, unzip it on your system, and follow the steps below:
+
+**Step 1**- Change directory to ```src``` folder and run the following command:
+```
+chmod +x phalcon.py
+```
+**Step 2**- Convert phalcon into an executable file using the following commands (_second command is optional_):
+```
+sudo mv phalcon.py /usr/local/bin/phalcon
+sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
+```
+## Arguments
+```-i```: Input read count file
+
+```-o```: Output prefix
+
+```-r```: Minimum read depth threshold (_Default_ : 5)
+
+```-a```: Alternate frequency threshold (_Default_ : 0.2)
+
+```-v```: Threshold for proportion of cells with insufficient read count information (_Default_ : 0.5)
+
+```-m```: Threshold for proportion of sites harboring a mutation (_Default_ : 0.004)
+
+```-c```: Clustering algorithm to use (_Default_ : "spectral", Options: "spectral" or "leiden")
+
+```-s```: Seed
+
+## Optional Arguments
+```-gq```: Enable genotype quality filter (_Default_ : 0)
+
+```-q```: Genotype quality threshold (_Default_ : 30)
+
+## Output
+
+PHALCON mainly outputs the variant calls on each cell (_.vcf format_) and the reconstructed phylogeny (_.gv format_). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
+
+## Run PHALCON
+
+On the command line, give the input arguments (use ```help``` for the list of arguments) and run phalcon.
+
+Below is an example where "sample_read_count_file.tsv" and "sample_geno_qual_file.tsv" files are provided as input with all other variables being kept at the default values.
+```
+phalcon -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
+```
+Use ```-gq 0``` to disable the genotype quality filter. For a sample run, you can find the input files here:
+
+[Sample read count and genotype quality files](https://drive.google.com/drive/u/1/folders/1DuhxBdxZNmsljerC1NVS12M_1r0B4Sbw)
+
+## Help
+Run ```phalcon -help``` for the description of parameters, along with their default values.
