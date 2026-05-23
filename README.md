@@ -55,5 +55,9 @@ Use ```-gq 0``` to disable the genotype quality filter. For a sample run, you ca
 
 [Sample read count and genotype quality files](https://drive.google.com/drive/u/1/folders/1DuhxBdxZNmsljerC1NVS12M_1r0B4Sbw)
 
+##Tutorials
+
+### AML tutorial - [AML-67-001](https://phalcon-phylogeny-aware-variant-calling-for-large-scale-data.readthedocs.io/en/latest/)
+
 ## Help
 Run ```phalcon -help``` for the description of parameters, along with their default values.
