@@ -2,7 +2,7 @@
 ## Description
 PHALCON is a scalable single-cell variant caller designed for high-throughput sequencing data. It is robust to common single-cell sequencing (SCS) errors and enables accurate mutation detection across large numbers of cells within practical runtimes.
 
-![PHALCON Workflow](Overview_PHALCON.png)
+![PHALCON Workflow](/docs/images/Overview_PHALCON.png)
 
 ## Usage
 PHALCON takes as input a read count matrix $(sites \times cells)$ and (_optionally_) a genotype quality matrix. If you have a loom file instead, a script named ```loomToReadcount.py``` is present in the ```supplementary``` folder in the main directory, output files of which can be fed as input to PHALCON.
