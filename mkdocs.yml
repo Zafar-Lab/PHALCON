@@ -1,9 +1,13 @@
 site_name: PHALCON
 docs_dir: docs
 nav:
+
   - Home: index.md
   - Simulation: simulation.md
   - AML-67-001 Tutorial: aml_67_001.md
   - TN4 Tutorial: tnbc.md
+
+  - Tutorial: index.md
+66922fa1b08ad9573163dc704c35b834b5730a48
 theme:
   name: readthedocs
