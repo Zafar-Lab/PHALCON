@@ -7,6 +7,7 @@ To generate simulated data, refer to refer to [Generate synthetic datasets](#gen
 Each parameter is explained in detail below:
 
 * `-i` : Input read count file name (*.tsv file*)
+
 PHALCON accepts data in the form of a readcounts file. The readcount file should look like:
 ```
 chr1	1	G	T	0,0,15,0	0,0,12,0	0,0,37,0	0,0,32,0	0,0,13,0	0,0,29,0	0,0,19,0	0,0,22,0	0,0,16,1	0,0,31,0
@@ -22,15 +23,16 @@ chr1	10	G	T	0,0,16,0	0,0,13,0	0,0,22,0	0,0,34,0	0,0,16,0	0,0,30,0	0,0,23,0	0,0,2
 chr1	11	G	T	0,0,15,0	0,0,10,0	0,0,31,0	1,0,32,0	0,0,16,0	0,0,23,0	0,0,18,0	0,0,24,0	0,0,21,0	0,0,33,0
 ```
 
-Each row corresponds to a genomic site. The first four columns respectively correspond to *chromosome*, *genomic site*, *reference nucleotide*, and *alternate nucleotide*. The rest of the columns are the cells. Each entry is a 4-tuple format corresponding to the number of reads containg A,C,G,T (respectively) that aligned with that particular locus.
-<font color="red">Dimension:*sites* x *cells*</font>
+Each row corresponds to a genomic site. The first four columns respectively correspond to *chromosome*, *genomic site*, *reference nucleotide*, and *alternate nucleotide*. The rest of the columns are the cells. Each entry is a 4-tuple format corresponding to the number of reads containg A,C,G,T (respectively) that aligned with that particular locus. (<font color="red">Dimension:*sites* x *cells*</font>)
 
-* Output obtained by panel seqeuncing datasets is generally in the form of a loom file. Use ```loomToReadcount.py``` present in the ```supplementary``` folder to convert loom file to PHALCON-based format. To include indels, use ```loompyToReadcount_indels.py```
+( **NOTE** : Output obtained by panel seqeuncing datasets is generally in the form of a loom file. Use ```loomToReadcount.py``` present in the ```supplementary``` folder to convert loom file to PHALCON-based format. To include indels, use ```loompyToReadcount_indels.py```)
 
 * ```-gq``` : Enable genotype quality filter (Default : 0) (*Optional*)
+
 If you have a genotype quality file and you want to use that for quality filtering, add ```-gq 1``` in the command while running PHALCON.
 
 * ```-g``` : Genotype quality file name (*.tsv file*) (*Optional*)
+
 To use the genotype quality filtering, you need to pass the genotype quality file. Also, don't forget to enable the ```-gq``` parameter to not run into bugs.
 
 The genotype quality file should look like:
@@ -50,8 +52,7 @@ The genotype quality file should look like:
 12	17	91	95	96	32	41	78	67	16	56	5	5	95	35	71	57	59	60
 ```
 
-The first column is the index, the rest of the columns mention the quality of the mapped reads. It is often present in the loom file. Extracting the genotype quality information for each site and cell is also embedded in the script ```loomToReadcount.py```.
-<font color="red">Dimension:*sites* x *cells*</font>
+The first column is the index, the rest of the columns mention the quality of the mapped reads. It is often present in the loom file. Extracting the genotype quality information for each site and cell is also embedded in the script ```loomToReadcount.py```. (<font color="red">Dimension:*sites* x *cells*</font>)
 
 * `-o` : Output prefix (*string*)
 The output prefix for all the output files you will obtain after running PHALCON.
