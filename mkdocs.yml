@@ -7,7 +7,5 @@ nav:
   - AML-67-001 Tutorial: aml_67_001.md
   - TN4 Tutorial: tnbc.md
 
-  - Tutorial: index.md
-
 theme:
   name: readthedocs
