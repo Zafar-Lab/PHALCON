@@ -1,14 +1,16 @@
 ## Running PHALCON on simulated data
 
-To generate simulated data, refer to refer to [Generate synthetic datasets](#generate_synthetic_datasets)).
+To generate simulated data, refer to refer to ([Generate synthetic datasets](#generate_synthetic_datasets)).
 
-### Know the parameters
+### Parameters
+#### Required parameters
 
-Each parameter is explained in detail below:
+`-i` : Input read count file name (*.tsv file*)
 
-* `-i` : Input read count file name (*.tsv file*)
+* PHALCON accepts data in the form of a readcounts file. Each row corresponds to a genomic site. The first four columns respectively correspond to *chromosome*, *genomic site*, *reference nucleotide*, and *alternate nucleotide*. The rest of the columns are the cells. Each entry is a 4-tuple format corresponding to the number of reads containg A,C,G,T (respectively) that aligned with that particular locus. *The file must be tab-separated.* (<font color="red">Dimension:*sites* x *cells*</font>)
 
-PHALCON accepts data in the form of a readcounts file. The readcount file should look like:
+
+##### Input format example
 ```
 chr1	1	G	T	0,0,15,0	0,0,12,0	0,0,37,0	0,0,32,0	0,0,13,0	0,0,29,0	0,0,19,0	0,0,22,0	0,0,16,1	0,0,31,0
 chr1	2	G	C	0,0,14,0	0,0,13,0	0,0,41,0	0,0,33,0	0,0,16,0	0,0,26,0	0,0,17,0	0,0,20,0	0,0,21,0	0,0,28,0
@@ -23,21 +25,21 @@ chr1	10	G	T	0,0,16,0	0,0,13,0	0,0,22,0	0,0,34,0	0,0,16,0	0,0,30,0	0,0,23,0	0,0,2
 chr1	11	G	T	0,0,15,0	0,0,10,0	0,0,31,0	1,0,32,0	0,0,16,0	0,0,23,0	0,0,18,0	0,0,24,0	0,0,21,0	0,0,33,0
 ```
 
-Each row corresponds to a genomic site. The first four columns respectively correspond to *chromosome*, *genomic site*, *reference nucleotide*, and *alternate nucleotide*. The rest of the columns are the cells. Each entry is a 4-tuple format corresponding to the number of reads containg A,C,G,T (respectively) that aligned with that particular locus. (<font color="red">Dimension:*sites* x *cells*</font>)
+( **NOTE** : Panel seqeuncing outputs are generally in Loom format. Use ```loomToReadcount.py``` present in the ```supplementary``` folder to convert loom file to PHALCON-based format. To include indels, use ```loompyToReadcount_indels.py```)
 
-( **NOTE** : Output obtained by panel seqeuncing datasets is generally in the form of a loom file. Use ```loomToReadcount.py``` present in the ```supplementary``` folder to convert loom file to PHALCON-based format. To include indels, use ```loompyToReadcount_indels.py```)
+#### Output parameters
+`-o` : Output prefix (*string*)
 
-* `-o` : Output prefix (*string*)
-The output prefix for all the output files you will obtain after running PHALCON.
+* The output prefix for all the output files you will obtain after running PHALCON.
 
-### Optional parameters
-* ```-gq``` : Enable genotype quality filter (Default : 0) (*Optional*)
+#### Optional parameters
+`-gq` : Enable genotype quality filter (Default : 0) (*Optional*)
 
-If you have a genotype quality file and you want to use that for quality filtering, add ```-gq 1``` in the command while running PHALCON.
+* If you have a genotype quality file and you want to use that for quality filtering, add ```-gq 1``` in the command while running PHALCON.
 
-* ```-g``` : Genotype quality file name (*.tsv file*) (*Optional*)
+`-g` : Genotype quality file name (*.tsv file*) (*Optional*)
 
-To use the genotype quality filtering, you need to pass the genotype quality file. Also, don't forget to enable the ```-gq``` parameter to not run into bugs.
+*  To use the genotype quality filtering, you need to pass the genotype quality file. Also, don't forget to enable the ```-gq``` parameter to not run into bugs.
 
 The genotype quality file should look like:
 ```
@@ -62,30 +64,36 @@ The first column is the index, the rest of the columns mention the quality of th
 
 The paramters related to filtering thresholds are described in detail below. **The defaults follow recommended best practices for such platforms, so they should not be changed unless necessary.**
  
-* ```-r``` : Minimum read depth threshold (*Default : 5*)
+`-r` : Minimum read depth threshold (*Default : 5*)
 
-Removes read count information from the cells with coverage depth less than this given threshold. For high coverage datasets, you can increase the value for more confident calls.
+* Removes read count information from the cells with coverage depth less than this given threshold. For high coverage datasets, you can increase the value for more confident calls.
 
-* ```-gq``` and ```-g``` : Genotype quality filter (*Optional*) (refer to Optional parameters](#optional_parameters))
+`-gq` and `-g` : Genotype quality filter (*Optional*)
 
-* ```-a``` : Alternate frequency threshold (*Default : 0.2*)
+* (refer to [Optional parameters](#optional_parameters))
 
-Filters out read-count information based on low variant allele frequency (VAF), since a VAF value much lower than 0.5 (for a heterozygous variant, expected VAF ~ 0.5) can indicate a potential false positive.
 
-* ```-v``` : Threshold for proportion of cells with insufficient read count information (*Default : 0.5*)
+`-a` : Alternate frequency threshold (*Default : 0.2*)
 
-Removes genomic sites where read count information is available for fewer than the given threshold proportion of cells.
+* Filters out read-count information based on low variant allele frequency (VAF), since a VAF value much lower than 0.5 (for a heterozygous variant, expected VAF ~ 0.5) can indicate a potential false positive.
 
-* ```-m``` : Threshold for proportion of sites harboring a mutation (*Default : 0.004*)
+`-v` : Threshold for proportion of cells with insufficient read count information (*Default : 0.5*)
 
-Removes a genomic site if the fraction of cells harboring a mutation is very low. For real datasets, a higher cutoff (e.g., 0.01) may be used for more stringent filtering.
+* Removes genomic sites where read count information is available for fewer than the given threshold proportion of cells.
+
+`-m` : Threshold for proportion of sites harboring a mutation (*Default : 0.004*)
+
+* Removes a genomic site if the fraction of cells harboring a mutation is very low. For real datasets, a higher cutoff (e.g., 0.01) may be used for more stringent filtering.
 
 **A detailed analysis for parameter sensitivity related to some of these filters is present in the Supplementary document of the manuscript.**
 
-### Guidelines for clustering parameters
+### Guidelines for clustering
 
-* ```-c``` : Clustering technique (*Default : spectral*)
+`-c` : Clustering technique (*Default : spectral*)
 
-We specifically utilize graph-based clustering as it does not pre-assume any cluster structure, making it better suited for capturing heterogeneity. 
+* We specifically utilize graph-based clustering as it does not pre-assume any cluster structure, making it better suited for capturing heterogeneity. 
 
-You can choose either Spectral clustering or Leiden clustering to cluster the cells. Use: ```-c leiden``` for enabling leiden clustering.
+* You can choose either Spectral clustering or Leiden clustering to cluster the cells. Use: ```-c leiden``` for enabling leiden clustering.
+
+### Usage
+
