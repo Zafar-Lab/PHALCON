@@ -58,7 +58,7 @@ The genotype quality file should look like:
 
 The first column is the index, the rest of the columns mention the quality of the mapped reads. It is often present in the loom file. Extracting the genotype quality information for each site and cell is also embedded in the script ```loomToReadcount.py```. (<font color="red">Dimension:*sites* x *cells*</font>)
 
-### Best practices for filtering parameters
+### Guidelines for filtering thresholds
 
 The paramters related to filtering thresholds are described in detail below. **The defaults follow recommended best practices for such platforms, so they should not be changed unless necessary.**
  
@@ -79,3 +79,13 @@ Removes genomic sites where read count information is available for fewer than t
 * ```-m``` : Threshold for proportion of sites harboring a mutation (*Default : 0.004*)
 
 Removes a genomic site if the fraction of cells harboring a mutation is very low. For real datasets, a higher cutoff (e.g., 0.01) may be used for more stringent filtering.
+
+**A detailed analysis for parameter sensitivity related to some of these filters is present in the Supplementary document of the manuscript.**
+
+### Guidelines for clustering parameters
+
+* ```-c``` : Clustering technique (*Default : spectral*)
+
+We specifically utilize graph-based clustering as it does not pre-assume any cluster structure, making it better suited for capturing heterogeneity. 
+
+You can choose either Spectral clustering or Leiden clustering to cluster the cells. Use: ```-c leiden``` for enabling leiden clustering.
