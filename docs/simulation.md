@@ -27,6 +27,10 @@ Each row corresponds to a genomic site. The first four columns respectively corr
 
 ( **NOTE** : Output obtained by panel seqeuncing datasets is generally in the form of a loom file. Use ```loomToReadcount.py``` present in the ```supplementary``` folder to convert loom file to PHALCON-based format. To include indels, use ```loompyToReadcount_indels.py```)
 
+* `-o` : Output prefix (*string*)
+The output prefix for all the output files you will obtain after running PHALCON.
+
+### Optional parameters
 * ```-gq``` : Enable genotype quality filter (Default : 0) (*Optional*)
 
 If you have a genotype quality file and you want to use that for quality filtering, add ```-gq 1``` in the command while running PHALCON.
@@ -54,5 +58,24 @@ The genotype quality file should look like:
 
 The first column is the index, the rest of the columns mention the quality of the mapped reads. It is often present in the loom file. Extracting the genotype quality information for each site and cell is also embedded in the script ```loomToReadcount.py```. (<font color="red">Dimension:*sites* x *cells*</font>)
 
-* `-o` : Output prefix (*string*)
-The output prefix for all the output files you will obtain after running PHALCON.
+### Best practices for filtering parameters
+
+The paramters related to filtering thresholds are described in detail below. **The defaults follow recommended best practices for such platforms, so they should not be changed unless necessary.**
+ 
+* ```-r``` : Minimum read depth threshold (*Default : 5*)
+
+Removes read count information from the cells with coverage depth less than this given threshold. For high coverage datasets, you can increase the value for more confident calls.
+
+* ```-gq``` and ```-g``` : Genotype quality filter (*Optional*) (refer to Optional parameters](#optional_parameters))
+
+* ```-a``` : Alternate frequency threshold (*Default : 0.2*)
+
+Filters out read-count information based on low variant allele frequency (VAF), since a VAF value much lower than 0.5 (for a heterozygous variant, expected VAF ~ 0.5) can indicate a potential false positive.
+
+* ```-v``` : Threshold for proportion of cells with insufficient read count information (*Default : 0.5*)
+
+Removes genomic sites where read count information is available for fewer than the given threshold proportion of cells.
+
+* ```-m``` : Threshold for proportion of sites harboring a mutation (*Default : 0.004*)
+
+Removes a genomic site if the fraction of cells harboring a mutation is very low. For real datasets, a higher cutoff (e.g., 0.01) may be used for more stringent filtering.
