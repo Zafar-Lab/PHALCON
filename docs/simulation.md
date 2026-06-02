@@ -7,7 +7,7 @@ To generate simulated data, refer to refer to ([Generate synthetic datasets](#ge
 
 `-i` : Input read count file name (*.tsv file*)
 
-* PHALCON accepts data in the form of a readcounts file. Each row corresponds to a genomic site. The first four columns respectively correspond to *chromosome*, *genomic site*, *reference nucleotide*, and *alternate nucleotide*. The rest of the columns are the cells. Each entry is a 4-tuple format corresponding to the number of reads containg A,C,G,T (respectively) that aligned with that particular locus. *The file must be tab-separated.* (<font color="red">Dimension:*sites* x *cells*</font>)
+* PHALCON accepts data in the form of a readcounts file. Each row corresponds to a genomic site. The first four columns respectively correspond to *chromosome*, *genomic site*, *reference nucleotide*, and *alternate nucleotide*. The rest of the columns are the cells. Each entry is a 4-tuple format corresponding to the number of reads containg A,C,G,T (respectively) that aligned with that particular locus. *The file must be tab-separated.* (<font color="red">Dimension : *sites* x *(cells+4)*</font>)
 
 
 ##### Input format example
@@ -63,7 +63,35 @@ The first column is the index, the rest of the columns mention the quality of th
 
 
 ### Usage
-PHALCON takes as input a read count matrix and (optionally) a genotype quality matrix. If you have a loom file instead, a script named loomToReadcount.py is present in the supplementary folder in the main directory, output files of which can be fed as input to PHALCON. For running PHALCON, download the src folder, unzip it on your system, and follow the steps below:
+PHALCON takes as input a read count matrix and (optionally) a genotype quality matrix. If you have a loom file instead, a script named loomToReadcount.py is present in the supplementary folder in the main directory, output files of which can be fed as input to PHALCON. 
+
+### Installation
+Clone the repo and navigate to the main directory:
+```python
+git clone https://github.com/Zafar-Lab/PHALCON
+cd PHALCON
+```
+
+Create and activate the PHALCON conda environment:
+```python
+conda env create -f environment.yml
+conda activate phalcon
+```
+Verify that PHALCON and all dependencies have been installed successfully, run:
+```python
+python src/phalcon.py --help
+```
+This should display the list of available command-line arguments.
+
+###Run PHALCON
+The example below runs PHALCON using both a read count matrix (*sample_read_count_file.tsv*) and a genotype quality matrix (*sample_geno_qual_file*) while keeping all other parameters at their default values.
+
+```python
+python src/phalcon.py -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
+```
+
+###Create a PHALCON executable
+Download the src folder, unzip it on your system, and follow the steps below:
 
 **Step 1**- Change directory to src folder and run the following command:
 ```python
@@ -76,39 +104,11 @@ sudo mv phalcon.py /usr/local/bin/phalcon
 sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 ```
 
-Arguments
-
-`-i` : Input read count file
-
-`-o` : Output prefix
-
-`-r` : Minimum read depth threshold (Default : 5)
-
-`-a` : Alternate frequency threshold (Default : 0.2)
-
-`-v` : Threshold for proportion of cells with insufficient read count information (Default : 0.5)
-
-`-m` : Threshold for proportion of sites harboring a mutation (Default : 0.004)
-
-`-c` : Clustering algorithm to use (Default : "spectral", Options: "spectral" or "leiden")
-
-`-s` : Seed
-
-Optional Arguments
-
-`-gq` : Enable genotype quality filter (Default : 0)
-
-`-q` : Genotype quality threshold (Default : 30)
-
-
-###Run PHALCON
-On the command line, give the input arguments (use help for the list of arguments) and run phalcon.
-
-Below is an example where "sample_read_count_file.tsv" and "sample_geno_qual_file.tsv" files are provided as input with all other variables being kept at the default values.
-
+After creating the symbolic link, PHALCON can be run directly as:
 ```python
-phalcon -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
+phalcon -i sample_read_count_file.tsv -g sample_geno_qual_file.tsv -gq 1
 ```
+
 
 ###Output
 

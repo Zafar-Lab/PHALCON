@@ -16,7 +16,6 @@ import time
 import copy
 import os
 from scipy import linalg
-import reload 
 import importlib 
 sys.path.insert(0, os.path.abspath(".")) 
 import filtering, maximum_likelihood_tree, write_vcf
