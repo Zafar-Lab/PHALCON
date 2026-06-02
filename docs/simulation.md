@@ -60,40 +60,7 @@ The genotype quality file should look like:
 
 The first column is the index, the rest of the columns mention the quality of the mapped reads. It is often present in the loom file. Extracting the genotype quality information for each site and cell is also embedded in the script ```loomToReadcount.py```. (<font color="red">Dimension:*sites* x *cells*</font>)
 
-### Guidelines for filtering thresholds
 
-The paramters related to filtering thresholds are described in detail below. **The defaults follow recommended best practices for such platforms, so they should not be changed unless necessary.**
- 
-`-r` : Minimum read depth threshold (*Default : 5*)
-
-* Removes read count information from the cells with coverage depth less than this given threshold. For high coverage datasets, you can increase the value for more confident calls.
-
-`-gq` and `-g` : Genotype quality filter (*Optional*)
-
-* (refer to [Optional parameters](#optional_parameters))
-
-
-`-a` : Alternate frequency threshold (*Default : 0.2*)
-
-* Filters out read-count information based on low variant allele frequency (VAF), since a VAF value much lower than 0.5 (for a heterozygous variant, expected VAF ~ 0.5) can indicate a potential false positive.
-
-`-v` : Threshold for proportion of cells with insufficient read count information (*Default : 0.5*)
-
-* Removes genomic sites where read count information is available for fewer than the given threshold proportion of cells.
-
-`-m` : Threshold for proportion of sites harboring a mutation (*Default : 0.004*)
-
-* Removes a genomic site if the fraction of cells harboring a mutation is very low. For real datasets, a higher cutoff (e.g., 0.01) may be used for more stringent filtering.
-
-**A detailed analysis for parameter sensitivity related to some of these filters is present in the Supplementary document of the manuscript.**
-
-### Guidelines for clustering
-
-`-c` : Clustering technique (*Default : spectral*)
-
-* We specifically utilize graph-based clustering as it does not pre-assume any cluster structure, making it better suited for capturing heterogeneity. 
-
-* You can choose either Spectral clustering or Leiden clustering to cluster the cells. Use: ```-c leiden``` for enabling leiden clustering.
 
 ### Usage
 PHALCON takes as input a read count matrix and (optionally) a genotype quality matrix. If you have a loom file instead, a script named loomToReadcount.py is present in the supplementary folder in the main directory, output files of which can be fed as input to PHALCON. For running PHALCON, download the src folder, unzip it on your system, and follow the steps below:
@@ -146,4 +113,39 @@ phalcon -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
 ###Output
 
 PHALCON mainly outputs the variant calls on each cell (.vcf format) and the reconstructed phylogeny (.gv format). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
+
+### Guidelines for filtering
+
+The paramters related to filtering thresholds are described in detail below. **The defaults follow recommended best practices for such platforms, so they should not be changed unless necessary.**
+ 
+`-r` : Minimum read depth threshold (*Default : 5*)
+
+* Removes read count information from the cells with coverage depth less than this given threshold. For high coverage datasets, you can increase the value for more confident calls.
+
+`-gq` and `-g` : Genotype quality filter (*Optional*)
+
+* (refer to [Optional parameters](#optional_parameters))
+
+
+`-a` : Alternate frequency threshold (*Default : 0.2*)
+
+* Filters out read-count information based on low variant allele frequency (VAF), since a VAF value much lower than 0.5 (for a heterozygous variant, expected VAF ~ 0.5) can indicate a potential false positive.
+
+`-v` : Threshold for proportion of cells with insufficient read count information (*Default : 0.5*)
+
+* Removes genomic sites where read count information is available for fewer than the given threshold proportion of cells.
+
+`-m` : Threshold for proportion of sites harboring a mutation (*Default : 0.004*)
+
+* Removes a genomic site if the fraction of cells harboring a mutation is very low. For real datasets, a higher cutoff (e.g., 0.01) may be used for more stringent filtering.
+
+**A detailed analysis for parameter sensitivity related to some of these filters is present in the Supplementary document of the manuscript.**
+
+### Guidelines for clustering
+
+`-c` : Clustering technique (*Default : spectral*)
+
+* We specifically utilize graph-based clustering as it does not pre-assume any cluster structure, making it better suited for capturing heterogeneity. 
+
+* You can choose either Spectral clustering or Leiden clustering to cluster the cells. Use: ```-c leiden``` for enabling leiden clustering.
 
