@@ -3,9 +3,9 @@ docs_dir: docs
 nav:
 
   - Home: index.md
-  - Simulation: simulation.md
-  - AML-67-001 Tutorial: aml_67_001.md
-  - TN4 Tutorial: tnbc.md
+  - Tutorial 1- Running PHALCON on simulated datasets: simulation.md
+  - Tutorial 2- AML-67-001 (AML Targeted Sequencing Panel): aml_67_001.md
+  - Tutorial 3- TN4 (TNBC Targeted Sequencing Panel): tnbc.md
 
 theme:
   name: readthedocs

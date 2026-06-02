@@ -1,13 +1,13 @@
 ## Running PHALCON on simulated data
 
-To generate simulated data, refer to refer to ([Generate synthetic datasets](#generate_synthetic_datasets)).
+To generate simulated data, refer to ([Generate synthetic datasets](#generate-synthetic-datasets)).
 
 ### Parameters
 #### Required parameters
 
 `-i` : Input read count file name (*.tsv file*)
 
-* PHALCON accepts data in the form of a readcounts file. Each row corresponds to a genomic site. The first four columns respectively correspond to *chromosome*, *genomic site*, *reference nucleotide*, and *alternate nucleotide*. The rest of the columns are the cells. Each entry is a 4-tuple format corresponding to the number of reads containg A,C,G,T (respectively) that aligned with that particular locus. *The file must be tab-separated.* (<font color="red">Dimension : *sites* x *(cells+4)*</font>)
+* PHALCON accepts data in the form of a readcounts file. Each row corresponds to a genomic site. The first four columns respectively correspond to *chromosome*, *genomic site*, *reference nucleotide*, and *alternate nucleotide*. The rest of the columns are the cells. Each entry is a 4-tuple format corresponding to the number of reads containing A,C,G,T (respectively) that aligned with that particular locus. *The file must be tab-separated.* (<font color="red">Dimension : *sites* x *(cells+4)*</font>)
 
 
 ##### Input format example
@@ -62,18 +62,15 @@ The first column is the index, the rest of the columns mention the quality of th
 
 
 
-### Usage
-PHALCON takes as input a read count matrix and (optionally) a genotype quality matrix. If you have a loom file instead, a script named loomToReadcount.py is present in the supplementary folder in the main directory, output files of which can be fed as input to PHALCON. 
-
 ### Installation
 Clone the repo and navigate to the main directory:
-```python
+```bash
 git clone https://github.com/Zafar-Lab/PHALCON
 cd PHALCON
 ```
 
 Create and activate the PHALCON conda environment:
-```python
+```bash
 conda env create -f environment.yml
 conda activate phalcon
 ```
@@ -90,31 +87,32 @@ The example below runs PHALCON using both a read count matrix (*sample_read_coun
 python src/phalcon.py -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
 ```
 
-###Create a PHALCON executable
-Download the src folder, unzip it on your system, and follow the steps below:
+###Output
+
+PHALCON mainly outputs the variant calls on each cell (.vcf format) and the reconstructed phylogeny (.gv format). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
+
+
+### PHALCON executable
+You may also create a system-wide executable for PHALCON. This allows PHALCON to be invoked directly from the command line using the `phalcon` command instead of `python src/phalcon.py`. To create the executable, navigate to the `src` directory and follow the steps below:
 
 **Step 1**- Change directory to src folder and run the following command:
-```python
+```bash
 chmod +x phalcon.py
 ```
 
 **Step 2**- Convert phalcon into an executable file using the following commands (second command is optional):
-```python
+```bash
 sudo mv phalcon.py /usr/local/bin/phalcon
 sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 ```
 
 After creating the symbolic link, PHALCON can be run directly as:
-```python
+```bash
 phalcon -i sample_read_count_file.tsv -g sample_geno_qual_file.tsv -gq 1
 ```
 
-
-###Output
-
-PHALCON mainly outputs the variant calls on each cell (.vcf format) and the reconstructed phylogeny (.gv format). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
-
-### Guidelines for filtering
+### Guidelines
+#### Guidelines for filtering
 
 The paramters related to filtering thresholds are described in detail below. **The defaults follow recommended best practices for such platforms, so they should not be changed unless necessary.**
  
@@ -122,9 +120,9 @@ The paramters related to filtering thresholds are described in detail below. **T
 
 * Removes read count information from the cells with coverage depth less than this given threshold. For high coverage datasets, you can increase the value for more confident calls.
 
-`-gq` and `-g` : Genotype quality filter (*Optional*)
+`-gq` and `-g` : Genotype quality filter (*Optional*, *Default Genotype quality : 30*)
 
-* (refer to [Optional parameters](#optional_parameters))
+* Removes read count information from cells with genotype quality less than 30. (Refer to [Optional parameters](#optional-parameters))
 
 
 `-a` : Alternate frequency threshold (*Default : 0.2*)
@@ -141,7 +139,7 @@ The paramters related to filtering thresholds are described in detail below. **T
 
 **A detailed analysis for parameter sensitivity related to some of these filters is present in the Supplementary document of the manuscript.**
 
-### Guidelines for clustering
+#### Guidelines for clustering
 
 `-c` : Clustering technique (*Default : spectral*)
 
@@ -149,3 +147,6 @@ The paramters related to filtering thresholds are described in detail below. **T
 
 * You can choose either Spectral clustering or Leiden clustering to cluster the cells. Use: ```-c leiden``` for enabling leiden clustering.
 
+### Generate synthetic datasets
+
+To generate simulated data, 
