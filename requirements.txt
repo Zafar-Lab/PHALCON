@@ -1,3 +1,11 @@
 numpy
 pandas
+scipy
+scikit-learn
+tqdm
+ete3
+scanpy
+seaborn
+matplotlib
+graphviz
 mkdocs

@@ -1,0 +1,21 @@
+name: phalcon
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - tqdm
+  - ete3
+  - scanpy
+  - seaborn
+  - matplotlib
+  - graphviz
+  - pip
+
+  - pip:
+      - graphviz

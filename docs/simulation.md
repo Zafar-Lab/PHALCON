@@ -96,4 +96,54 @@ The paramters related to filtering thresholds are described in detail below. **T
 * You can choose either Spectral clustering or Leiden clustering to cluster the cells. Use: ```-c leiden``` for enabling leiden clustering.
 
 ### Usage
+PHALCON takes as input a read count matrix and (optionally) a genotype quality matrix. If you have a loom file instead, a script named loomToReadcount.py is present in the supplementary folder in the main directory, output files of which can be fed as input to PHALCON. For running PHALCON, download the src folder, unzip it on your system, and follow the steps below:
+
+**Step 1**- Change directory to src folder and run the following command:
+```python
+chmod +x phalcon.py
+```
+
+**Step 2**- Convert phalcon into an executable file using the following commands (second command is optional):
+```python
+sudo mv phalcon.py /usr/local/bin/phalcon
+sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
+```
+
+Arguments
+
+`-i` : Input read count file
+
+`-o` : Output prefix
+
+`-r` : Minimum read depth threshold (Default : 5)
+
+`-a` : Alternate frequency threshold (Default : 0.2)
+
+`-v` : Threshold for proportion of cells with insufficient read count information (Default : 0.5)
+
+`-m` : Threshold for proportion of sites harboring a mutation (Default : 0.004)
+
+`-c` : Clustering algorithm to use (Default : "spectral", Options: "spectral" or "leiden")
+
+`-s` : Seed
+
+Optional Arguments
+
+`-gq` : Enable genotype quality filter (Default : 0)
+
+`-q` : Genotype quality threshold (Default : 30)
+
+
+###Run PHALCON
+On the command line, give the input arguments (use help for the list of arguments) and run phalcon.
+
+Below is an example where "sample_read_count_file.tsv" and "sample_geno_qual_file.tsv" files are provided as input with all other variables being kept at the default values.
+
+```python
+phalcon -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
+```
+
+###Output
+
+PHALCON mainly outputs the variant calls on each cell (.vcf format) and the reconstructed phylogeny (.gv format). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
 
