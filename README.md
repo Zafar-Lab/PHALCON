@@ -57,7 +57,8 @@ Use ```-gq 0``` to disable the genotype quality filter. For a sample run, you ca
 
 ## Tutorials
 
-Click on this [link](https://phalcon-phylogeny-aware-variant-calling-for-panel-seq-data.readthedocs.io/en/latest/) to access the readthedocs for PHALCON.
+You can find the readthedocs for PHALCON here - [PHALCON-read-the-docs](https://phalcon-phylogeny-aware-variant-calling-for-panel-seq-data.readthedocs.io/en/latest/#)
+### Tutorials on simulated datasets - [PHALCON-on-simulated-data](https://phalcon-phylogeny-aware-variant-calling-for-panel-seq-data.readthedocs.io/en/latest/simulation/)
 #### AML tutorial - [AML-67-001](https://phalcon-phylogeny-aware-variant-calling-for-panel-seq-data.readthedocs.io/en/latest/aml_67_001/)
 #### TNBC tutorial - [TN4](https://phalcon-phylogeny-aware-variant-calling-for-panel-seq-data.readthedocs.io/en/latest/tnbc/)
 
