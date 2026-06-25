@@ -6,17 +6,24 @@ PHALCON is a scalable single-cell variant caller designed for high-throughput se
 
 ## Usage
 PHALCON takes as input a read count matrix $(sites \times cells)$ and (_optionally_) a genotype quality matrix. If you have a loom file instead, a script named ```loomToReadcount.py``` is present in the ```supplementary``` folder in the main directory, output files of which can be fed as input to PHALCON.
-For running PHALCON, download the ```src``` folder, unzip it on your system, and follow the steps below:
+### Installation
+Clone the repo and navigate to the main directory:
+```bash
+git clone https://github.com/Zafar-Lab/PHALCON
+cd PHALCON
+```
 
-**Step 1**- Change directory to ```src``` folder and run the following command:
+Create and activate the PHALCON conda environment:
+```bash
+conda env create -f environment.yml
+conda activate phalcon
 ```
-chmod +x phalcon.py
+Verify that PHALCON and all dependencies have been installed successfully, run:
+```python
+python src/phalcon.py --help
 ```
-**Step 2**- Convert phalcon into an executable file using the following commands (_second command is optional_):
-```
-sudo mv phalcon.py /usr/local/bin/phalcon
-sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
-```
+This should display the list of available command-line arguments.
+
 ## Arguments
 ```-i```: Input read count file
 
@@ -39,11 +46,26 @@ sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 
 ```-q```: Genotype quality threshold (_Default_ : 30)
 
-## Output
 
-PHALCON mainly outputs the variant calls on each cell (_.vcf format_) and the reconstructed phylogeny (_.gv format_). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
+### Run PHALCON
+The example below runs PHALCON using both a read count matrix (*sample_read_count_file.tsv*) and a genotype quality matrix (*sample_geno_qual_file*) while keeping all other parameters at their default values.
 
-## Run PHALCON
+```python
+python src/phalcon.py -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
+```
+
+### PHALCON executable
+You may also create a system-wide executable for PHALCON. To create the executable, download the ```src``` folder, unzip it on your system, and follow the steps below:
+
+**Step 1**- Change directory to ```src``` folder and run the following command:
+```
+chmod +x phalcon.py
+```
+**Step 2**- Convert phalcon into an executable file using the following commands (_second command is optional_):
+```
+sudo mv phalcon.py /usr/local/bin/phalcon
+sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
+```
 
 On the command line, give the input arguments (use ```help``` for the list of arguments) and run phalcon.
 
@@ -52,6 +74,12 @@ Below is an example where "sample_read_count_file.tsv" and "sample_geno_qual_fil
 phalcon -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
 ```
 Use ```-gq 0``` to disable the genotype quality filter. For a sample run, you can find the input files here:
+
+
+## Output
+
+PHALCON mainly outputs the variant calls on each cell (_.vcf format_) and the reconstructed phylogeny (_.gv format_). Other auxiliary files, such as umap, cluster labels, etc, are also outputted.
+
 
 [Sample read count and genotype quality files](https://drive.google.com/drive/u/1/folders/1DuhxBdxZNmsljerC1NVS12M_1r0B4Sbw)
 
