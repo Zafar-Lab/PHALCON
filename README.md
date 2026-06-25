@@ -54,10 +54,10 @@ The example below runs PHALCON using both a read count matrix (*sample_read_coun
 python src/phalcon.py -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
 ```
 
-### PHALCON executable
+### PHALCON executable (_optional_)
 You may also create a system-wide executable for PHALCON. To create the executable, download the ```src``` folder, unzip it on your system, and follow the steps below:
 
-**Step 1**- Change directory to ```src``` folder and run the following command:
+**Step 1**- Change directory to `src` folder and run the following command:
 ```
 chmod +x phalcon.py
 ```
@@ -67,13 +67,13 @@ sudo mv phalcon.py /usr/local/bin/phalcon
 sudo ln -s $(pwd)/phalcon.py /usr/local/bin/phalcon
 ```
 
-On the command line, give the input arguments (use ```help``` for the list of arguments) and run phalcon.
+On the command line, give the input arguments (use `help` for the list of arguments) and run phalcon.
 
 Below is an example where "sample_read_count_file.tsv" and "sample_geno_qual_file.tsv" files are provided as input with all other variables being kept at the default values.
 ```
 phalcon -i ../sample_read_count_file.tsv -g ../sample_geno_qual_file.tsv -gq 1
 ```
-Use ```-gq 0``` to disable the genotype quality filter. For a sample run, you can find the input files here:
+Use `-gq 0` to disable the genotype quality filter. For a sample run, you can find the input files here:
 
 
 ## Output
