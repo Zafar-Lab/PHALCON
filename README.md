@@ -5,8 +5,8 @@ PHALCON is a scalable single-cell variant caller designed for high-throughput se
 ![PHALCON Workflow](/docs/images/Overview_PHALCON.png)
 
 ## Usage
-PHALCON takes as input a read count matrix $(sites \times cells)$ and (_optionally_) a genotype quality matrix. If you have a loom file instead, a script named ```loomToReadcount.py``` is present in the ```supplementary``` folder in the main directory, output files of which can be fed as input to PHALCON.
-### Installation
+PHALCON takes as input a read count matrix $(sites \times cells)$ and (_optionally_) a genotype quality matrix. If you have a loom file instead, a script named `loomToReadcount.py` is present in the `supplementary` folder in the main directory, output files of which can be fed as input to PHALCON.
+## Installation
 Clone the repo and navigate to the main directory:
 ```bash
 git clone https://github.com/Zafar-Lab/PHALCON
@@ -25,29 +25,29 @@ python src/phalcon.py --help
 This should display the list of available command-line arguments.
 
 ## Arguments
-```-i```: Input read count file
+`-i`: Input read count file
 
-```-o```: Output prefix
+`-o`: Output prefix
 
-```-r```: Minimum read depth threshold (_Default_ : 5)
+`-r`: Minimum read depth threshold (_Default_ : 5)
 
-```-a```: Alternate frequency threshold (_Default_ : 0.2)
+`-a`: Alternate frequency threshold (_Default_ : 0.2)
 
-```-v```: Threshold for proportion of cells with insufficient read count information (_Default_ : 0.5)
+`-v`: Threshold for proportion of cells with insufficient read count information (_Default_ : 0.5)
 
-```-m```: Threshold for proportion of sites harboring a mutation (_Default_ : 0.004)
+`-m`: Threshold for proportion of sites harboring a mutation (_Default_ : 0.004)
 
-```-c```: Clustering algorithm to use (_Default_ : "spectral", Options: "spectral" or "leiden")
+`-c`: Clustering algorithm to use (_Default_ : "spectral", Options: "spectral" or "leiden")
 
-```-s```: Seed
+`-s`: Seed
 
-## Optional Arguments
-```-gq```: Enable genotype quality filter (_Default_ : 0)
+### Optional Arguments
+`-gq`: Enable genotype quality filter (_Default_ : 0)
 
-```-q```: Genotype quality threshold (_Default_ : 30)
+`-q`: Genotype quality threshold (_Default_ : 30)
 
 
-### Run PHALCON
+## Run PHALCON
 The example below runs PHALCON using both a read count matrix (*sample_read_count_file.tsv*) and a genotype quality matrix (*sample_geno_qual_file*) while keeping all other parameters at their default values.
 
 ```python
