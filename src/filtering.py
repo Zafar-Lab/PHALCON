@@ -146,7 +146,7 @@ def altAlleleFreqFilter(df,lklhd_df,minAltAlleleFreq):
                 elif df[i][2] not in ['A','C','G','T'] or df[i][3] not in ['A','C','G','T']:
                    alt_depth = counts[1]  # because indels carry readcount info as ref:alt, so reference depth is present at index 0 and alternate depth is present at index 1   
 
-                if lklhd_df[i][cell]>0.1 and np.float16(alt_depth/read_depth) < minAltAlleleFreq:
+                if lklhd_df[i][cell]>0.5 and np.float16(alt_depth/read_depth) < minAltAlleleFreq:
                     if df[i][2] in ['A','C','G','T'] and df[i][3] in ['A','C','G','T']:
                        df[i][4+cell] = '0,0,0,0'
                     elif df[i][2] not in ['A','C','G','T'] or df[i][3] not in ['A','C','G','T']:
