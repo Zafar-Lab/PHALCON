@@ -55,11 +55,6 @@ with open('inferred_format.nw','r') as f:
 
 
         
-
-
-
-# CHANGE THE TREE FROM HERE
-# Use cluster information from outside the folder
 tree_nw = Tree("inferred_format.nw")
 
 def findPar(tree_nw, split_list):
@@ -210,8 +205,6 @@ for i in range(clonal_info.shape[0]): # every site individually
         node2.label.append(str(chr) + ":" + str(site))
     else:
       print("Fault")
-#for node in tree_nw.traverse("preorder"):
-  #print(node.label)
 
 
 for node in tree_nw.traverse("preorder"):
@@ -227,7 +220,7 @@ for node in tree_nw.traverse("preorder"):
       string = string + string_k
       k += 1
 
-with open(data+'dbsnp_nz_inferred_tree.gv','w') as f:
+with open(data+'_inferred_tree.gv','w') as f:
   f.write('digraph G {\n')
   for node in tree_nw.traverse("preorder"):
     list_of_label = node.label
@@ -281,7 +274,7 @@ for node in tree_nw.traverse("preorder"):
 
 print("Number of labels ",len(all_pos))
 
-with open(data+'dbsnp_nz_nonempty_inferred_tree.gv','w') as f:
+with open(data+'_nonempty_inferred_tree.gv','w') as f:
   f.write('digraph G {\n')
   for node in tree_nw.traverse("preorder"):
     list_of_label = node.label
@@ -294,6 +287,6 @@ with open(data+'dbsnp_nz_nonempty_inferred_tree.gv','w') as f:
 with open(data+'evolution_pattern.txt','w') as f:
   f.write(evolution_pattern)
 
-s = Source.from_file(data+'dbsnp_nz_nonempty_inferred_tree.gv')
+s = Source.from_file(data+'_nonempty_inferred_tree.gv')
 s.render()
 
