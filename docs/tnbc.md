@@ -10,13 +10,14 @@
 
 ### Running PHALCON
 
- * The output obtained from MissioBio Tapestri pipeline is in the form of loom files. The loom file for TN4 is present in the folder [loom file](https://drive.google.com/drive/folders/1vW4XBpDR5H7cTjCcf_3dkokAOKc9Otcr?usp=drive_link).
+* The output obtained from MissioBio Tapestri pipeline is in the form of loom files. The loom file for TN4 is present in the folder [loom file](https://drive.google.com/drive/folders/1vW4XBpDR5H7cTjCcf_3dkokAOKc9Otcr?usp=drive_link).
 * To convert the loom file in PHALCON-style input use the script ```loomToReadcount.py``` present in the same folder
+* Scripts for running PHALCON are present at [python scripts for running phalcon](https://drive.google.com/drive/folders/1Evck59kj2s5RYVdNzXWCGzAUIREU1_5A?usp=drive_link)
 
 <font color="red">Input</font> : Pass the readcount file, genotype quality file and the output prefix name.
 Run the following command:
 ```python
-python Algorithm_phalcon_indels.py -D TN4 -i readCounts_MBTN4_nodups.tsv -g gq_file_TN4.tsv -o TN4_
+python Algorithm_hierarchical.py -D TN4 -i readCounts_MBTN4_nodups.tsv -g gq_file_TN4.tsv -o TN4_
 ```
 <font color="red">Output</font> : 
 You will get the variants inferred by PHALCON in form of a VCF file.
@@ -32,52 +33,45 @@ Subset vcf output:
 ##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
 ##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
 ##FORMAT=<ID=PL,Number=G,Type=Integer,Description="Normalized, Phred-scaled likelihoods for genotypes as defined in the VCF specification">
-#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  cell1   cell2   cell3   cell4   cell5   cell6   cell7   cell8   cell9   cell10  cell11  cell12  cell13  cell14  cell15  >
-chr1    115258748       *       C       T       *       PASS    DP=809943       GT:AD:DP:GQ:PL  0/1:392:392:99  0/1:227:430:99  0/0:0:444:99    0/0:0:205:99    0/0:0:0:99      0/0:0:211:99    >
-chr1    115258749       *       T       G       *       PASS    DP=805084       GT:AD:DP:GQ:PL  0/1:392:392:99  0/1:227:430:99  0/0:0:0:99      0/0:0:207:99    0/0:0:104:99    0/0:0:209:99    >
-chr2    25463285        *       GCGGTAGAACTCAAA G       *       PASS    DP=188342       GT:AD:DP:GQ:PL  0/1:0:97:99     0/1:6:23:99     0/1:0:0:12      0/1:26:44:99    0/0:0:124:99    0/1:47:4>
-chr2    25469085        *       CG      C       *       PASS    DP=216991       GT:AD:DP:GQ:PL  0/0:0:149:99    0/0:0:63:99     0/1:0:19:57     0/0:0:149:99    0/0:1:124:99    0/1:0:0:99      >
-chr2    25469913        *       C       T       *       PASS    DP=128427       GT:AD:DP:GQ:PL  0/1:0:39:99     0/1:39:60:99    0/1:32:32:95    0/1:22:33:99    0/1:66:93:99    0/1:29:33:35    >
-chr2    198266943       *       C       T       *       PASS    DP=689574       GT:AD:DP:GQ:PL  0/1:307:313:99  0/1:72:72:99    0/1:149:151:99  0/1:217:217:99  0/1:242:242:99  0/1:153:154:99  >
-chr2    198267770       *       G       GAA     *       PASS    DP=257605       GT:AD:DP:GQ:PL  0/1:46:92:99    0/1:0:0:99      0/1:27:59:99    0/1:15:22:99    0/1:56:117:99   0/1:0:0:99      >
-chr4    55592244        *       G       A       *       PASS    DP=266536       GT:AD:DP:GQ:PL  0/1:93:325:99   0/1:0:0:99      0/1:0:0:99      0/1:0:0:99      0/1:15:65:99    0/1:0:0:99      
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  cell1   cell2   cell3   cell4   cell5   cell6   cell7   cell8   cell9   cell10  cell11>
+chr1    28316313        *       C       A       *       PASS    DP=853946       GT:AD:DP:GQ:PL  0/0:0:20:60     0/1:10:10:30    0/1:39:47:57    0/1:387:388:99>
+chr1    40430992        *       G       C       *       PASS    DP=559770       GT:AD:DP:GQ:PL  0/0:2:40:70     0/1:82:150:99   0/1:30:53:99    0/1:172:437:99>
+chr1    45811136        *       C       T       *       PASS    DP=1282176      GT:AD:DP:GQ:PL  0/1:25:50:99    0/1:32:56:99    0/1:148:262:99  0/1:502:1054:9>
+chr1    62740446        *       T       C       *       PASS    DP=1900868      GT:AD:DP:GQ:PL  0/1:32:81:99    0/1:75:189:99   0/1:80:170:99   0/1:400:1084:9>
+chr1    62740449        *       T       C       *       PASS    DP=1909598      GT:AD:DP:GQ:PL  0/1:32:81:99    0/1:75:189:99   0/1:80:170:99   0/1:405:1084:9>
+chr1    62971394        *       G       C       *       PASS    DP=3745080      GT:AD:DP:GQ:PL  0/0:2:179:99    0/1:79:155:99   0/1:219:553:99  0/1:484:984:99>
+chr1    89734417        *       C       G       *       PASS    DP=1321902      GT:AD:DP:GQ:PL  0/0:2:278:99    0/1:120:238:99  0/1:78:198:99   0/1:131:446:99>
+chr1    94502814        *       G       C       *       PASS    DP=557482       GT:AD:DP:GQ:PL  0/0:0:24:72     0/1:8:33:84     0/1:14:90:47    0/1:38:117:99 >
+chr1    145015876       *       A       G       *       PASS    DP=1541480      GT:AD:DP:GQ:PL  0/0:2:168:99    0/0:19:132:75   0/0:4:205:99    0/0:6:1224:99 >
+chr1    145112420       *       C       T       *       PASS    DP=1947138      GT:AD:DP:GQ:PL  0/1:62:156:99   0/1:27:119:99   0/1:101:367:99  0/1:481:1447:9>  
 ```
 
-### Post-processing using dbSNP
+### Post-processing and annotation
 
-The post processing includes removing variants with no mutation across all cells and removing clonal variants present in the dbSNP database 📑 
+The intermediate steps to obtain the final annotated list of variants are explained in detail below:
+
+#### Post-processing using dbSNP and matched normal removal
+
+For AML, the post processing includes removing variants with no mutation across all cells, removing clonal variants present in the dbSNP database 📑 and removing variants present in the matched normal sample.
 
 *  The dbSNP.vcf is present at the link [dbSNP_database](https://drive.google.com/file/d/1yy30skLXLOd4jDniXLWgaEqqozATlCN0/view?usp=drive_link)
+(Change the location of the dbsnp vcf file accordingly in the python script.)
 
+* Python script to perform post-processing is present in the same folder under the name `dbsnp_normal_removal_from_tnbc.py`
 
-Follow the steps below to generate the final vcf file of post-processed variants:
-
-*  Download the folder [post-processing](https://drive.google.com/drive/folders/1pEHDfl8mCl3LuR02_PLioJCtQRRQ97Xx?usp=drive_link) in your local system
-*   Open termnal inside the folder and type ```jupyter-notebook```
-* Open the notebook [Post-processing_AML-67-001.ipynb](https://drive.google.com/file/d/1Yt3M_x0wBndzOCs9wl16o0pzKw_LAxfu/view?usp=drive_link)
-* Run ```dbsnp_for_aml_finite_sites.py```
-* You will get a final list of variants in form of a vcf file in a file name ending with ```_post_processed_final.vcf```
-
-**NOTE**: As input to the ```dbsnp_for_aml_finite_sites.py``` python file, you only need the vcf file you obtained after running PHALCON. 
+**NOTE**: As input to the `dbsnp_normal_removal_from_tnbc.py` python file, you only need the vcf file you obtained after running PHALCON. 
 If required, change the location of the vcf file accordingly. 
 
 * Use ```-i``` to provide location of the input vcf file 
 * Use ```-o``` to mention the name of the post processed vcf file
 
-### Annotate variants
+#### Annotate variants
 
-For variant annotation using ANNOVAR, the necessary files and scripts are present in the [annotating_variants](https://drive.google.com/drive/folders/1pfyQ7VWEw9cZKXe9RLwVetxKC4SY2vss?usp=drive_link) link. 
+For variant annotation using ANNOVAR, the necessary files and scripts are present in the [annotating_variants](https://drive.google.com/drive/folders/12Kmuvd4ZcNbwtCSbGjrhKp4OudKsaZQ1?usp=drive_link) link. 
 
+* Python script to obtain the annotations is present in the same folder under the name `run_annovar_for_annotating_final_variants.py`
 
-Use the following steps to annotate mutations:
-
-*  Download the folder [annotating_variants](https://drive.google.com/drive/folders/1pfyQ7VWEw9cZKXe9RLwVetxKC4SY2vss?usp=drive_link) in your local system
-*   Open termnal inside the folder and type ```jupyter-notebook```
-* Open the notebook [Annotating_the_final_variants.ipynb](https://drive.google.com/file/d/1WBz1aBEFTjcZbZ4y6XOBEubgQwR3gvGk/view?usp=drive_link)
-* Run ```run_annovar_for_annotating_final_variants.py```
-* You will get an annotated files of the final variants
-
-**NOTE**: As input to the ```run_annovar_for_annotating_final_variants.py``` python file, you only need the post-processed vcf file. 
+**NOTE**: As input to the `run_annovar_for_annotating_final_variants.py` python file, you only need the post-processed vcf file. 
 If required, change the location of the vcf file accordingly. 
 
 * Use ```-i``` to provide location of the post-processed input vcf file 
@@ -98,11 +92,13 @@ The following files are needed to produce the final tree and genotypes (All of t
 * ```--vcf_file``` : Final post-processed VCF file (Post-processed final VCF file, refer to [Post-processing using dbSNP](#post-processing-using-dbsnp))
 * ```--variant_function_file``` : Gene-annotated file of the post-processed VCF file, refer to [Annotate variants](#annotate-variants))
 
-Run the following command (all the files used in the command can also be found in the [Input_for_visualisation](https://drive.google.com/drive/folders/1Y0UDlHPwAHSQaWybjpWQDzZHkqkEs4_h?usp=drive_link) folder for ease):
+**For a consolidated run including post processing, annotation and visualisation, follow the steps**:
 
-```python
-python phalcon_visualization_pipeline.py -d TN4 --cluster_labels_file TN4_inferred_cluster_labels.txt --lklhd_file TN4_final_lklhds.tsv --final_df_file TN4_final_df.tsv --genotype_config_file TN4_Genotype_configuration.tsv --newick_file TN4_inferred_tree.nw --vcf_file TN4_post_processed_vcf.vcf --variant_function_file TN4_final.avinput.variant_function
-```
+* Download the folder [post_processing_plotting_and_visualisation](https://drive.google.com/drive/folders/1WEFGqmpW1zGKFy9tHxB_Olx5HT8XvVqg?usp=drive_link) in your local system.
+* Open terminal inside the folder and type ```jupyter-notebook```.
+* Open the notebook [Post_processing_anotation_and_visualisation](https://drive.google.com/file/d/17G8aQVumRexSpp_QBzuPTWnTYcELdC9K/view?usp=drive_link) and run the contents.
+* The outputs will be saved in the [Output](https://drive.google.com/drive/folders/1dUHPSmZvjNXg105h9JqB6aSgEUeaJYYr?usp=drive_link) folder.
+
 You will obtain the following outputs:
 
 * <font color="red">**Genotype heatmap**</font>:
