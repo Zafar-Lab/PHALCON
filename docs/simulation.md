@@ -149,4 +149,49 @@ The paramters related to filtering thresholds are described in detail below. **T
 
 ### Generate synthetic datasets
 
-To generate simulated data, 
+To generate simulated data, use the script present in the folder [generate_synthetic_data](https://drive.google.com/drive/folders/1JWyuiIxNzRqUMV4MdHjfIVD-Hcdbi8ka?usp=drive_link).
+
+You can provide the following arguments:
+
+`--numCells` : Number of cells _(Default: 2000)_
+
+* Specifies the total number of single cells to simulate.
+
+`--numClones` : Number of clones _(Default: 10)_
+
+* Specifies the number of distinct clonal populations.
+
+`--numPos` : Number of genomic positions _(Default: 40000)_
+
+* Specifies the total number of genomic positions to simulate.
+
+`--covMean` : Mean sequencing coverage _(Default: 25)_
+
+* Sets the average sequencing depth.
+
+`--covVar` : Coverage variance _(Default: 50)_
+
+* Controls the variability in sequencing coverage across sites.
+
+`--dropoutRate` : Allelic dropout rate _(Default: 0.2)_
+
+* Specifies the probability of allelic dropout during amplification.
+
+`--mdaErrorRate` : Amplification error rate _(Default: 0.0025)_
+
+* Specifies the error rate introduced during multiple displacement amplification.
+
+`--sequencingErrorRate` : Sequencing error rate _(Default: 0.001)_
+
+* Specifies the probability of sequencing errors.
+
+`--seed` : Random seed _(Default: 129)_
+
+`--prefixName` : Output file prefix _(Default: sc_2000_)_
+
+* Prefix used for naming all generated output files.
+
+**Note** : The dataset generator provides several additional parameters (e.g., average region length, amplification coefficients, and other simulation controls). For a complete list of available options, run:
+```
+python simulate_sc_datasets.py -h
+```
