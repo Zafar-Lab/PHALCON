@@ -52,7 +52,7 @@ The intermediate steps to obtain the final annotated list of variants are explai
 
 #### Post-processing using dbSNP and matched normal removal
 
-For AML, the post processing includes removing variants with no mutation across all cells, removing clonal variants present in the dbSNP database 📑 and removing variants present in the matched normal sample.
+For TNBC, the post processing includes removing variants with no mutation across all cells, removing clonal variants present in the dbSNP database 📑 and removing variants present in the matched normal sample.
 
 *  The dbSNP.vcf is present at the link [dbSNP_database](https://drive.google.com/file/d/1yy30skLXLOd4jDniXLWgaEqqozATlCN0/view?usp=drive_link)
 (Change the location of the dbsnp vcf file accordingly in the python script.)
