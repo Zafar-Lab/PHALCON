@@ -59,11 +59,13 @@ For TNBC, the post processing includes removing variants with no mutation across
 
 * Python script to perform post-processing is present in the same folder under the name `dbsnp_normal_removal_from_tnbc.py`
 
+* The clonal and non-clonal mpileup files, intersected with the variants bed file is also present in the same folder. You can access the matched normal fastqs at [NCBI_TNBC](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA763862)
+
 **NOTE**: As input to the `dbsnp_normal_removal_from_tnbc.py` python file, you only need the vcf file you obtained after running PHALCON. 
 If required, change the location of the vcf file accordingly. 
 
-* Use ```-i``` to provide location of the input vcf file 
-* Use ```-o``` to mention the name of the post processed vcf file
+* Use `-i` to provide location of the input vcf file 
+* Use `-o` to mention the name of the post processed vcf file
 
 #### Annotate variants
 
