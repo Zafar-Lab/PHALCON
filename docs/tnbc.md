@@ -76,8 +76,8 @@ For variant annotation using ANNOVAR, the necessary files and scripts are presen
 **NOTE**: As input to the `run_annovar_for_annotating_final_variants.py` python file, you only need the post-processed vcf file. 
 If required, change the location of the vcf file accordingly. 
 
-* Use ```-i``` to provide location of the post-processed input vcf file 
-* Use ```-o``` to mention the output tag of the annotated files
+* Use `-i` to provide location of the post-processed input vcf file 
+* Use `-o` to mention the output tag of the annotated files
 
 ### Visualization
 
@@ -91,7 +91,7 @@ The following files are needed to produce the final tree and genotypes (All of t
 * ```--final_df_file``` : Likelihood file containing mutation likelihood for each cell and variant (*Obtained as one of the files after running PHALCON*)
 * ```--genotype_config_file``` : Genotype configuration file (*Obtained as one of the files after running PHALCON*)
 * ```--newick_file``` : Newick format file (*Obtained as one of the files after running PHALCON*)
-* ```--vcf_file``` : Final post-processed VCF file (Post-processed final VCF file, refer to [Post-processing using dbSNP](#post-processing-using-dbSNP-and-matched-normal-removal))
+* ```--vcf_file``` : Final post-processed VCF file (Post-processed final VCF file, refer to [Post-processing using dbSNP and matched normal removal](#post-processing-using-dbsnp-and-matched-normal-removal))
 * ```--variant_function_file``` : Gene-annotated file of the post-processed VCF file, refer to [Annotate variants](#annotate-variants))
 
 **For a consolidated run including post processing, annotation and visualisation, follow the steps**:
