@@ -429,7 +429,12 @@ if clustering=='leiden':
 
 
 print('Algorithm completed in: ',time.time()-start_time,' secs')
-inferred_index = np.argmax(np.array(lklhd_s))
+
+if clustering == 'Spectral':
+    inferred_index = np.argmax(np.array(lklhd_s))
+if clustering == 'Leiden':
+    inferred_index = np.argmax(np.array(sil_score_s))
+
 best_mat = best_mat_s[inferred_index]
 best_labels = label_s[inferred_index]
 final_inferred_clusters = len(set(best_labels))
